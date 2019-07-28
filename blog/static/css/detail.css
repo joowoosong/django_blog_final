@@ -1,0 +1,18 @@
+html,body,.content{ min-height : 100%; }
+
+.detail{
+    width: 100%;
+    padding-top: 56px;
+}
+
+.comments .comment-writer{
+    font-size: .7em;
+}
+
+.comment-container.dummy{
+    display:none;
+}
+
+.comment-container .comment-edit{
+    font-size : .8em;
+}

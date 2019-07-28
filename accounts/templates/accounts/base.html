@@ -1,0 +1,44 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title></title>
+        <script src="{% static './bower_components/jquery/dist/jquery.js' %}"></script>
+        <script src="{% static './bower_components/swiper/dist/js/swiper.js' %}"></script>
+        <script src="{% static './bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+        <link
+            rel="stylesheet"
+            href="{% static './bower_components/bootstrap/dist/css/bootstrap.css' %}"
+        />
+        <link
+            rel="stylesheet"
+            href="{% static './bower_components/swiper/dist/css/swiper.css' %}"
+        />
+        <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static './css/base.css' %}">
+
+        {% block header %}
+        {% endblock %}
+    </head>
+    <body>
+        <div class='content'>
+            {% block content %} {% endblock %}
+        </div>
+
+        <!-- FOOTER -->
+        <!-- <footer class="text-muted pt-5 pb-5 bg-dark ">
+            <div class="container">
+                <p class="float-right">
+                    <a href="#">Back to top</a>
+                </p>
+                <p>All Right Reserved By <a target="_blank" href="mailto:dev.yoogomja@gmail.com">YOOGOMJA</a></p>
+                <p>If you want to know some info about me, Please visit my <a target="_blank" href="https://github.com/yoogomja">github</a>.</p>
+            </div>
+        </footer> -->
+    </body>
+</html>

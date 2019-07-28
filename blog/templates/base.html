@@ -1,0 +1,105 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Joowoosong</title>
+        <script src="{% static './bower_components/jquery/dist/jquery.js' %}"></script>
+        <script src="{% static './bower_components/swiper/dist/js/swiper.js' %}"></script>
+        <script src="{% static './bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
+        <link
+            rel="stylesheet"
+            href="{% static './bower_components/bootstrap/dist/css/bootstrap.css' %}"
+        />
+        <link
+            rel="stylesheet"
+            href="{% static './bower_components/swiper/dist/css/swiper.css' %}"
+        />
+        <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static './css/base.css' %}">
+
+        {% block header %}
+        {% endblock %}
+    </head>
+    <body>
+        <!-- navbar 시작 -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{% url 'home' %}">Woosong.log</a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'home' %}"
+                            >Home <span class="sr-only">(current)</span></a
+                        >
+                    </li>
+                    
+                    {% if not user.is_authenticated %}
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/accounts/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/accounts/signup">Sign Up</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{user}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a href="{% url 'create_post'%}" class="dropdown-item" >New Post</a>
+                            <a class="dropdown-item" id="logout-btn" href="javascript:$('#logout').submit()">Sign Out</a>
+                            <form id="logout" method="POST" action="{% url 'signout' %}">
+                                {% csrf_token %}
+                            </form>
+                        </div>
+                    </li>
+                    {% endif %}
+                </ul>
+                <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}">
+                    <div class="input-group">
+                        <select class="custom-select" name="search_filter" id="inputGroupSelect04" aria-label="Example select with button addon">
+                            <option value="title">Title</option>
+                            <option value="body">Body</option>
+                        </select>
+                        <input type="text" name="q" class='form-control'>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+        <!-- navbar 종료 -->
+        <div class='content'>
+            {% block content %} {% endblock %}
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="text-muted pt-5 pb-5 bg-dark ">
+            <div class="container">
+                <p class="float-right">
+                    <a href="#">Back to top</a>
+                </p>
+                <p>All Right Reserved By <a target="_blank" href="mailto:dev.pmo6222@naver.com">Woosong</a></p>
+                <p>If you want to know some info about me, Please visit my <a target="_blank" href="https://github.com/joowoosong">github</a>.</p>
+            </div>
+        </footer>
+    </body>
+</html>

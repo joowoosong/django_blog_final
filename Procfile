@@ -1,0 +1,1 @@
+web: gunicorn gomjalog.wsgi --log-file -

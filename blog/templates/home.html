@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static './css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class='home'>
+    <div class="header">
+        <div class='cover'></div>
+        <div class='header-content'>
+            <div class='container'>
+                <p class='text-center header-title'>
+                    <span class='import'>제작</span> { <span class='variable'>블로그</span> } <span class='import'>어디서?</span> <span class='module'>'삼육멋사'</span>;
+                </p>
+                <p class='text-center text-success mt-5'>
+                    * 코딩 너무 어렵습니다 *
+                </p>
+                <p class='text-center text-success'>
+                    * 하쿠나마타다 *
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="posts container pt-5 pb-5">
+        <h3>Hottest Posts</h3>
+        <hr>
+        {% for post in hottest_posts %}
+        <div class="row mb-3 post align-middle">
+            <div class="col ">
+                <div class="post-title ">
+                    <a href="{% url 'detail' post.id %}">{{ post.title_summary }}</a>
+                </div>
+            </div>
+            <div class="col-4 post-info">
+                <div class="post-writer text-right">
+                    {{ post.writer }}
+                </div>
+                <div class="post-date text-right">
+                    {{ post.pub_date }}
+                </div>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}   
+        
+        <h3 class='mt-5'>Recent Posts</h3>
+        <hr>
+        {% for post in posts %}
+        <div class="row mb-3 post align-middle">
+            <div class="col ">
+                <div class="post-title ">
+                    <a href="{% url 'detail' post.id %}">{{ post.title_summary }}</a>
+                </div>
+            </div>
+            <div class="col-4 post-info">
+                <div class="post-writer text-right">
+                    {{ post.writer }}
+                </div>
+                <div class="post-date text-right">
+                    {{ post.pub_date }}
+                </div>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}    
+            
+        <div class="paginator text-right ">
+            {% if posts.has_previous%}
+            <a href="?page=1">First</a>
+            <a href="?page={{posts.previous_page_number}}">Previous</a>
+            {% endif %}
+
+            <span>{{posts.number}}</span>
+            <span>of</span>
+            <span>{{posts.paginator.num_pages}}</span>
+
+            {% if posts.has_next%}
+            <a href="?page={{posts.next_page_number}}">Next</a>
+            <a href="?page={{posts.paginator.num_pages}}">Last</a>
+            {% endif%}
+        </div>    
+        
+    </div>
+</div>
+
+{% endblock %}

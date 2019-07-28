@@ -1,0 +1,62 @@
+.home{
+    width: 100%;
+    /* height : 100%; */
+}
+
+.header{
+    width : 100%;
+    height : 600px;
+    padding-top:56px;
+    background-image:url("../imgs/home_header.jpg");
+    background-size : cover;
+    background-position : center;
+}
+
+.header .header-content{
+    position: absolute;
+    width: 100%;
+    height: 600px;
+    margin-top: -56px;
+}
+
+.header .header-content .container{
+    position:relative;
+    z-index: 11;
+    margin-top: 56px;
+}
+
+.header .header-title {
+    font-size: 3em;
+    color: rgb(230, 255, 119);
+    margin-top: 250px;
+}
+
+.header .header-title .import {
+    color : #29ffbf;
+}
+
+.header .header-title .module{
+    color: #aaff90;
+}
+
+.header .header-title .variable{
+    color: #ce2588;
+}
+
+.cover{
+    width : 100%;
+    height : 600px; 
+    margin-top:-56px;
+    background-color:rgba(0,0,0,0.6);
+    position:absolute;
+}
+
+/* posts */
+
+.posts .post .post-title{
+    font-size : 1.5em;
+}
+
+.posts .post{
+    padding : 15px 20px;
+}

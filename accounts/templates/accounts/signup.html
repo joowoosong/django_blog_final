@@ -1,0 +1,36 @@
+{% extends 'accounts/base.html' %}
+{% load staticfiles %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static './css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<form class="form-signin mt-5" method="POST" action="{% url 'signup' %}">
+    {% csrf_token %}
+    <!-- <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+    <h1 class="h3 mb-3 font-weight-normal">Please Sign Up</h1>
+
+    {% if status < 0 %}
+    <div class="alert alert-danger" role="alert">
+        비밀번호가 맞지않아
+    </div>
+    {% endif %}
+
+    <label for="inputEmail" class="sr-only">username</label>
+    <input type="text" name="username" id="inputEmail" class="form-control" placeholder="User Name" required="" autofocus="">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" name="password1" id="inputPassword" class="form-control pw-check-1" placeholder="Password" required="">
+    <label for="inputPassword2" class="sr-only">Password Check</label>
+    <input type="password" name="password2" id="inputPassword2" class="form-control pw-check-2" placeholder="Password check" required="">
+    
+    <button class="btn btn-lg btn-success btn-block" type="submit">Sign Up</button>
+    <div class="checkbox mt-3 mb-3 text-center">
+        <a href="../login" >계정이 이미 있어??</a>
+        <br >
+        <a href="/">메인 화면가기</a>
+    </div>
+    <p class="mt-3 mb-3 text-muted">© 2017-2019</p>
+    
+</form>
+{% endblock %}
